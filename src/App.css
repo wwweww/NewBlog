@@ -1,0 +1,37 @@
+.nav::-webkit-scrollbar {
+    width: 2px;
+}
+
+.nav::-webkit-scrollbar-thumb {
+    border-radius: 28px;
+    background-color: #4677ff;
+}
+
+.selected {
+    border-image: linear-gradient(-225deg, #D4FFEC 0%, #57F2CC 48%, #4596FB 100%) 2;
+}
+
+.navSelectedt {
+    background-image: linear-gradient(-45deg, #FFC796 0%, #FF6B95 100%);
+}
+
+.navSelected {
+    border-image: linear-gradient(to top, #f5b0bb 0%, #a5c6ff 99%, #aaccff 100%) 2;
+}
+
+.trapezoid-left,
+.trapezoid-right {
+    width: 66%;
+    height: 100%;
+    position: absolute;
+}
+
+.trapezoid-left {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 50% 100%, 0 100%);
+}
+
+.trapezoid-right {
+    right: 0;
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 0 100%);
+}
