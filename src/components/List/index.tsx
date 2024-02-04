@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import { ListProps } from "../../types/props";
 
 const List: React.FC<ListProps> = (props) => {
@@ -8,13 +8,7 @@ const List: React.FC<ListProps> = (props) => {
         className
     } = props
 
-    const [showList, setShowList] = useState<boolean>(true)
 
-
-    const handleClick = () => {
-        setShowList(!showList)
-        console.log(showList)
-    }
 
     return (
         <div className={"rounded-xl shadow divide-y-2 divide-[#c29ba5] " + (className ? className : "")}>

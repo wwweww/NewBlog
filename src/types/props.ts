@@ -16,3 +16,12 @@ export interface ListProps {
     items?: string[],
     className?: string
 }
+
+export interface CPProps {
+    name: string,
+    qq: string | number,
+    msg?: string,
+    time?: string,
+    className?: string,
+    isSelector?: boolean,
+}

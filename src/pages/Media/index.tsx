@@ -1,28 +1,41 @@
-import React, {useEffect, useState} from "react";
-import axios from "axios";
+import {MailOutlined, MessageTwoTone, UserOutlined} from "@ant-design/icons";
+import React, {useEffect, useRef} from "react";
+import CP from "./ContactPerson";
+import MegBox from "./megBox";
 
 type friendsType = {
     name: string,
-    avatar: string
+    qq: string | number,
 }
 
-const Friends: string[] = []
-
-type im = friendsType
-
-const ApiUrl = "https://fxinz.cn/api/qq-query.php?qq="
+const friends: friendsType[] = [
+    {
+        name: "𝓐𝓼𝓪𝓭𝔃",
+        qq: "2646787260"
+    },
+    {
+        name: "小牧",
+        qq: "2384870275"
+    },
+    {
+        name: "端",
+        qq: "1807752373",
+    }
+]
 
 const Media: React.FC = () => {
-    axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-    const [friends, setFriends] = useState<friendsType[]>([])
-    const [im, setIm] = useState<friendsType>()
-    const getImData = () => {
 
+    const MousePos = useRef()
+    const moveMouse  = e:Mouse => {
+        MousePos.current = {
+
+        }
     }
 
-    useEffect(() => {
-        getImData()
-    })
+    useEffect((() => {
+        window.addEventListener("mousemove", moveMouse)
+        return window.removeEventListener("mousemove", moveMouse)
+    }), [])
 
 
     return (
@@ -51,8 +64,37 @@ const Media: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className={"bar"}>
-
+                    <div className={"bar text-center"}>
+                        <ul>
+                            <li className={"rounded-lg bg-gray-400/15 flex justify-center items-center m-1 h-8"}>
+                                <MessageTwoTone twoToneColor={"#6366f1"} style={{
+                                    fontSize: "1.2rem",
+                                }}/>
+                            </li>
+                            <li className={"rounded-lg flex justify-center items-center m-1 h-8 hover:bg-gray-400/10"}>
+                                <UserOutlined style={{
+                                    fontSize: "1.2rem",
+                                }}/>
+                            </li>
+                            <li className={"rounded-lg flex justify-center items-center h-8 hover:bg-gray-400/10 mx-1"} onClick={() => {
+                                window.open("https://user.qzone.qq.com/2646787260/main")
+                            }}>
+                                <svg className="icon size-7" viewBox="0 0 1024 1024" version="1.1"
+                                     xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+                                    <path
+                                        d="M496.5 205.1c11.7 23.6 23.3 47.3 35 70.9 18.5 37.4 36.9 74.9 55.4 112.3 4 8.1 7.7 16.7 12.1 24.6 5.7 10.1 18.2 9.6 28.2 11 39.4 5.7 78.8 11.4 118.2 17.2 30.8 4.5 61.6 9.8 92.5 13.4 0.5 0.1 1.1 0.2 1.6 0.2-2.6-10-5.3-20.1-7.9-30.1l-57 55.5c-29.9 29.1-59.7 58.2-89.6 87.3-6.4 6.3-13.4 12.3-19.4 18.9-5.7 6.3-5.6 13.3-4.3 20.8l2.4 13.8c6.7 39.2 13.4 78.3 20.2 117.5 5.3 30.8 9.8 61.9 15.9 92.6 0.1 0.5 0.2 1.1 0.3 1.6 8.8-6.8 17.6-13.6 26.4-20.3-23.5-12.3-46.9-24.7-70.4-37l-110.7-58.2c-8-4.2-15.9-8.7-24-12.6-7.6-3.7-14.3-2.2-21.2 1.4-4.1 2.2-8.3 4.4-12.4 6.5-35.2 18.5-70.3 37-105.5 55.5-27.7 14.6-55.9 28.5-83.2 43.7-0.5 0.3-0.9 0.5-1.4 0.7 8.8 6.8 17.6 13.6 26.4 20.3 4.5-26.1 9-52.3 13.4-78.4 7-41.1 14.1-82.2 21.1-123.3 1.5-8.9 3.2-17.8 4.6-26.7 1.1-6.9 0.1-12.7-4.8-17.9-0.7-0.7-1.4-1.3-2.1-2-3.3-3.3-6.7-6.5-10-9.8-28.5-27.7-56.9-55.5-85.4-83.2-22.4-21.8-44.3-44.4-67.3-65.6-0.4-0.4-0.8-0.7-1.2-1.1-2.6 10-5.3 20.1-7.9 30.1l78.3-11.4 123.9-18c9-1.3 18.3-2 27.1-3.9 10.6-2.3 14.6-15.4 18.8-24 17.6-35.7 35.2-71.4 52.9-107.1 13.8-27.9 27.8-55.8 41.4-83.8 0.2-0.5 0.5-1 0.7-1.4 4.2-8.4 2.5-19.9-6.5-24.6-8.1-4.3-20.2-2.6-24.6 6.5l-34.8 70.5c-18.4 37.3-36.8 74.5-55.2 111.8-4.2 8.6-8.5 17.2-12.7 25.7 3.6-2.8 7.2-5.5 10.8-8.3-25.9 3.8-51.9 7.5-77.8 11.3-41.1 6-82.3 12-123.4 17.9-9.5 1.4-18.9 2.8-28.4 4.1-13.8 2-16.8 21.5-7.9 30.1 18.8 18.3 37.5 36.6 56.3 54.9 29.8 29 59.5 58 89.3 87 6.9 6.7 13.7 13.4 20.6 20-1.5-5.8-3.1-11.7-4.6-17.5-4.4 25.8-8.9 51.6-13.3 77.5-7 41-14.1 81.9-21.1 122.9-1.6 9.4-3.2 18.9-4.9 28.3-1.3 7.3 0.3 14.2 6.5 18.9 5.9 4.5 13.5 4.8 20 1.4l69.6-36.6c36.8-19.3 73.6-38.7 110.4-58 8.5-4.5 16.9-8.9 25.4-13.4h-18.2l69.6 36.6c36.8 19.3 73.6 38.7 110.4 58 8.5 4.5 16.9 8.9 25.4 13.4 6.5 3.4 14.1 3.2 20-1.4 6.1-4.7 7.7-11.6 6.5-18.9-4.4-25.8-8.9-51.6-13.3-77.5-7-41-14.1-81.9-21.1-122.9-1.6-9.4-3.2-18.9-4.9-28.3-1.5 5.8-3.1 11.7-4.6 17.5 18.8-18.3 37.5-36.6 56.3-54.9 29.8-29 59.5-58 89.3-87 6.9-6.7 13.7-13.4 20.6-20 8.8-8.6 5.8-28.1-7.9-30.1-25.9-3.8-51.9-7.5-77.8-11.3-41.1-6-82.3-12-123.4-17.9-9.5-1.4-18.9-2.8-28.4-4.1 3.6 2.8 7.2 5.5 10.8 8.3l-34.8-70.5c-18.4-37.3-36.8-74.5-55.2-111.8-4.2-8.6-8.5-17.2-12.7-25.7-4.2-8.5-16.9-11.5-24.6-6.5-9.1 5.6-11.3 15.5-6.8 24.6z"
+                                        fill="#ffffff"></path>
+                                    <path
+                                        d="M423.7 508.2h176.6c-4.2-10.2-8.5-20.5-12.7-30.7-20 16-39.9 32.1-59.9 48.1-31.6 25.3-63.1 50.7-94.7 76-7.3 5.9-14.7 11.8-22 17.7-5.5 4.4-6.2 13.7-3.7 19.7 2.8 6.5 9.2 11.1 16.4 11.1h176.6c9.4 0 18.4-8.3 18-18-0.4-9.8-7.9-18-18-18H423.7c4.2 10.2 8.5 20.5 12.7 30.7 20-16 39.9-32.1 59.9-48.1 31.6-25.3 63.1-50.7 94.7-76 7.3-5.9 14.7-11.8 22-17.7 5.5-4.4 6.2-13.7 3.7-19.7-2.8-6.5-9.2-11.1-16.4-11.1H423.7c-9.4 0-18.4 8.3-18 18 0.5 9.7 7.9 18 18 18z"
+                                        fill="#ffffff"></path>
+                                </svg>
+                            </li>
+                            <li className={"rounded-lg flex justify-center items-center m-1 h-8 hover:bg-gray-400/10"}>
+                                <MailOutlined style={{
+                                    fontSize: "1.2rem",
+                                }}/>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
@@ -64,9 +106,10 @@ const Media: React.FC = () => {
 
             <div className={"relative h-full"}>
                 <header className={"flex bg-[#1b1b1b]/80 pt-4 pb-3 px-4 absolute top-0"}>
-                    <input className={"bg-[#282828]/80 shadow rounded w-44 focus:border-indigo-500"} type="text" alt={"搜索"}/>
+                    <input className={"bg-[#282828]/80 shadow rounded w-44 focus:border-indigo-500"} type="text"
+                           alt={"搜索"}/>
 
-                    <button className={"ml-2 size-6 bg-[#282828]/80 shadow rounded p-1.5"}>
+                    <button className={"ml-2 size-6 bg-[#282828]/80 shadow rounded p-1.5 hover:bg-[#393939]"}>
                         <svg className="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="5559" width="NaN" height="NaN">
                             <path d="M455.111111 170.666667h113.777778v682.666666H455.111111z" fill="#797979"
@@ -77,49 +120,17 @@ const Media: React.FC = () => {
                     </button>
                 </header>
 
-                <div className={"h-full bg-[#282828] w-60 pt-[3.2em]"}>
-                    <div className={"flex h-16 bg-indigo-500 items-center p-2"}>
-                        <div className={"avatar size-9"}>
-                            <img className={"rounded-full"} src="https://q1.qlogo.cn/g?b=qq&nk=2646787260&s=640"
-                                 alt=""/>
-                        </div>
-
-                        <div className={"m-2 flex-1"}>
-                            <p className={"font-light text-[.9em]"}>
-                                𝓐𝓼𝓪𝓭𝔃
-                            </p>
-                            <p className={"font-light text-[.5em]"}>
-                                hhh
-                            </p>
-                        </div>
-
-                        <div className={"-translate-y-2 text-[.4em] font-thin mr-2"}>
-                            5:58
-                        </div>
-
-                    </div>
-
-
-                    <div className={"flex h-16 bg-transparent items-center p-2"}>
-                        <div className={"avatar size-9"}>
-                            <img className={"rounded-full"} src="https://q1.qlogo.cn/g?b=qq&nk=1807752373&s=640"
-                                 alt=""/>
-                        </div>
-
-                        <div className={"m-2 flex-1"}>
-                            <p className={"font-light text-[.9em]"}>
-                                得无胺
-                            </p>
-                            <p className={"font-light text-[.5em]"}>
-                                俺滴图图呢！！
-                            </p>
-                        </div>
-
-                        <div className={"-translate-y-2 text-[.4em] font-thin mr-2"}>
-                            昨天
-                        </div>
-
-                    </div>
+                <div className={"h-full bg-[#282828] w-60 pt-[3.2em] overflow-y-scroll nav"}>
+                    <ul className={"m-0 p-0"}>
+                        {friends.map((friend, idx) => {
+                            return (
+                                <li key={idx}>
+                                    <CP name={friend.name} qq={friend.qq} isSelector={idx === 0}
+                                        msg={(friend.name === "端" ? "俺滴图图呢！" : undefined)}/>
+                                </li>
+                            )
+                        })}
+                    </ul>
                 </div>
             </div>
 
@@ -130,8 +141,7 @@ const Media: React.FC = () => {
                         𝓐𝓼𝓪𝓭𝔃
                     </div>
 
-                    <div className={"mx-2 flex justify-center items-center -translate-y-1"}>
-
+                    <div className={"svg mx-2 flex justify-center items-center -translate-y-1"}>
                         <div className={"size-7 p-1"}>
                             <svg className="icon size-6" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="13025" width="200" height="200">
@@ -140,8 +150,6 @@ const Media: React.FC = () => {
                                     p-id="13026" fill="#ffffff"></path>
                             </svg>
                         </div>
-
-
                         <div className={"size-9 p-1 flex items-center justify-center translate-y-1 mx-4"}>
                             <svg className="icon size-8" viewBox="0 0 1025 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg"
@@ -154,7 +162,6 @@ const Media: React.FC = () => {
                                     fill="#ffffff" p-id="14297"></path>
                             </svg>
                         </div>
-
                         <div className={"size-9 p-1 flex items-center justify-center translate-y-1"}>
                             <svg className="icon size-7" viewBox="0 0 1024 1024" version="1.1"
                                  xmlns="http://www.w3.org/2000/svg" p-id="18813" width="200" height="200">
@@ -178,40 +185,13 @@ const Media: React.FC = () => {
                                     fill="#ffffff" p-id="18819"></path>
                             </svg>
                         </div>
-
-
                     </div>
                 </div>
 
                 <div className={"h-72"}>
-                    <div className={"flex p-2"}>
-                        <div className={"mx-2"}>
-                            <img className={"size-7 rounded-full"} src="https://q1.qlogo.cn/g?b=qq&nk=2646787260&s=640" alt=""/>
-                        </div>
-                        <div className={"rounded-xl p-2 bg-[#262626] text-[.5em]"}>
-                            Hi, 这里是雏绒！
-                        </div>
-                    </div>
+                    <MegBox meg={"想要我的联系方式的话QQ就只有2646787260一个啦"} senderQQ={"2646787260"}/>
+                    <MegBox meg={"其他的话...还有个Github！ 叫 wwweww 直接搜索就好了，嘿嘿"} senderQQ={"2646787260"}/>
 
-
-                    <div className={"flex p-2"}>
-                        <div className={"mx-2"}>
-                            <img className={"size-7 rounded-full"} src="https://q1.qlogo.cn/g?b=qq&nk=2646787260&s=640" alt=""/>
-                        </div>
-                        <div className={"rounded-xl p-2 bg-[#262626] text-[.5em]"}>
-                            想要我的联系方式的话QQ就只有2646787260一个啦
-                        </div>
-                    </div>
-
-
-                    <div className={"flex p-2"}>
-                        <div className={"mx-2"}>
-                            <img className={"size-7 rounded-full"} src="https://q1.qlogo.cn/g?b=qq&nk=2646787260&s=640" alt=""/>
-                        </div>
-                        <div className={"rounded-xl p-2 bg-[#262626] text-[.5em]"}>
-                            其他的话...还有个Github！ 叫 wwweww 直接搜索就好了，嘿嘿
-                        </div>
-                    </div>
                 </div>
 
                 <div className={"h-24"}>
