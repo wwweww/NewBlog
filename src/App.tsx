@@ -14,6 +14,8 @@ import bg3 from "./image/bg/3.png"
 import bg4 from "./image/bg/4.png"
 import bg5 from "./image/bg/5.png"
 import bg6 from "./image/bg/6.png"
+import {getVisibilityWatcher} from "web-vitals/dist/modules/lib/getVisibilityWatcher";
+import internal from "stream";
 
 
 const TabItems: HeaderProps["items"] = [
@@ -43,7 +45,43 @@ const TabItems: HeaderProps["items"] = [
 function App() {
     const [tabKey, setTabKey] = useState<string | number | null>(null)
     const [zb, setZb] = useState({x:0, y:0})
-    const halfViewWidth = window.innerWidth / 2
+
+    let interval: NodeJS.Timer
+    const clanTag = "Asadz"
+    let index = 0;
+    let isIncreasing = true;
+
+    const startTitle = () => {
+        interval = setInterval(() => {
+            const text = clanTag.slice(0, index)
+            document.title = (text.length ? `[${text}]` : "") + "无名小屋"
+            if (isIncreasing) {
+                index++
+                if (index === clanTag.length) {
+                    isIncreasing = false
+                }
+            } else {
+                index--
+                if (index === 0) {
+                    isIncreasing = true
+                }
+            }
+        }, 400)
+
+    }
+
+    const stopTitle = () => {
+        clearInterval(interval)
+        document.title = "Asadz的小博客~"
+    }
+
+    const a = () => {
+        if (document.hidden) {
+            startTitle()
+        } else {
+            stopTitle()
+        }
+    }
 
     const moveMouse: (e:MouseEvent) => any = (e) => {
         setZb({
@@ -57,9 +95,12 @@ function App() {
             let FirstTabKey = TabItems![0].key
             setTabKey(FirstTabKey)
         }
+        document.title = "欢迎呀~~"
 
+        window.addEventListener("visibilitychange", a)
         window.addEventListener("mousemove", moveMouse)
         return () => {
+            window.removeEventListener("visibilitychange", a)
             window.removeEventListener("mousemove", moveMouse)
         }
     }, [])
@@ -74,12 +115,12 @@ function App() {
             <div
                 className={"h-screen w-screen flex justify-center items-center bg-transparent z-50"}>
                 <div className={"min-h-full min-w-full relative"}>
-                    <div className={"absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg1})`, zIndex: 6, backgroundPositionX: zb.x*.055 - 80, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
-                    <div className={"absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg2})`, zIndex: 5, backgroundPositionX: zb.x*.060 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
-                    <div className={"absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg3})`, zIndex: 4, backgroundPositionX: zb.x*.045 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
-                    <div className={"absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg4})`, zIndex: 3, backgroundPositionX: zb.x*.030 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
-                    <div className={"absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg5})`, zIndex: 2, backgroundPositionX: zb.x*.035 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
-                    <div className={"absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg6})`, zIndex: 1, backgroundPositionX: zb.x*.030 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
+                    <div className={"bg-cover absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg1})`, zIndex: 6, backgroundPositionX: zb.x*.055 - 80, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
+                    <div className={"bg-cover absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg2})`, zIndex: 5, backgroundPositionX: zb.x*.060 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
+                    <div className={"bg-cover absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg3})`, zIndex: 4, backgroundPositionX: zb.x*.045 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
+                    <div className={"bg-cover absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg4})`, zIndex: 3, backgroundPositionX: zb.x*.030 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
+                    <div className={"bg-cover absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg5})`, zIndex: 2, backgroundPositionX: zb.x*.035 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
+                    <div className={"bg-cover absolute top-0 bottom-0 right-0 left-0 transition-all duration-300 ease-linear"} style={{backgroundImage: `url(${bg6})`, zIndex: 1, backgroundPositionX: zb.x*.030 - 115, backgroundRepeat: "no-repeat", backgroundSize: "105%"}}></div>
                 </div>
 
                 <div
