@@ -27,7 +27,7 @@ const friends: friendsType[] = [
     {
         name: "端",
         qq: "1807752373",
-        msg: "俺滴图图呢！"
+        msg: "小奶拳拳锤爆你"
     },{
         name: "清酒既载",
         qq: "2551402667",
@@ -79,34 +79,9 @@ const barList: sideBarItem[] = [
 
 
 const Media: React.FC = () => {
-    const [zb, setZb] = useState({x: 0, y: 0})
-
-    const moveMouse: (e: MouseEvent) => any = (e) => {
-        // console.log(e.clientX)
-        // console.log(e.clientY)
-        setZb({
-            x: e.clientX - (window.innerWidth - 1000) / 2,
-            y: e.clientY - (window.innerHeight - 640) / 2
-        })
-    }
-
-    useEffect((() => {
-        window.addEventListener("mousemove", moveMouse)
-        return () => {
-            window.removeEventListener("mousemove", moveMouse)
-        }
-    }), [])
-
 
     return (
         <div className={"flex h-full "}>
-            {/*test*/}
-            <div className={"fixed z-50 select-none"} style={{
-                top: zb.y,
-                left: zb.x,
-                transform: "translate(-50%, -50%)"
-            }}>
-            </div>
 
 
             {/*侧边栏*/}

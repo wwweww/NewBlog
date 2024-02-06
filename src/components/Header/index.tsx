@@ -12,6 +12,7 @@ const Header: React.FC<HeaderProps> = ({
                                        }) => {
     const [showTabs, setShowTabs] = useState<boolean>(false);
     const [activeKey, setActiveKey] = useState<string | number |null>(defaultActiveKey)
+    const [it, setIt] = useState<HeaderItem | null>(null)
 
     return (
         <header className={"flex justify-around mb-8 " + className}>
@@ -29,7 +30,8 @@ const Header: React.FC<HeaderProps> = ({
                          display: showTabs ? "none" : "flex"
                      }}>
                     <div className={"border-b-2 border-indigo-500 absolute top-0 bottom-0 left-0 right-0"}/>
-                    Welcome back
+                    {/*Welcome back*/}
+                    {it?.label === "Home" || it === null ? "Welcome back" : it?.label}
                 </div>
 
                 {showTabs ? items.map((item) => {
@@ -42,6 +44,7 @@ const Header: React.FC<HeaderProps> = ({
                             className={"z-10 transition ease-in-out delay-100 flex justify-center items-center relative hover:font-bold hover:shadow-orange-50 duration-300"}
                             onClick={() => {
                                 onChange(item)
+                                setIt(item)
                             }}
                         >
                             <div className={"transition ease-in-out delay-100 duration-300 border-b-2 border-white absolute top-0 bottom-0 left-0 right-0 hover:border-b-4 hover:border-green-400"}/>
