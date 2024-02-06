@@ -6,6 +6,7 @@ import Furry from "./pages/furry";
 import type {HeaderItem} from "./types/props"
 import Home from "./pages/Home";
 import Media from "./pages/Media";
+import About from './pages/About';
 
 
 const TabItems: HeaderProps["items"] = [
@@ -17,7 +18,7 @@ const TabItems: HeaderProps["items"] = [
     {
         key: "About",
         label: "About",
-        children: "This is a content of About"
+        children: <About />
     },
     {
         key: "Furry",

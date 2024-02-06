@@ -29,7 +29,7 @@ const Header: React.FC<HeaderProps> = ({
                          display: showTabs ? "none" : "flex"
                      }}>
                     <div className={"border-b-2 border-indigo-500 absolute top-0 bottom-0 left-0 right-0"}/>
-                    Welcome back, wwweww
+                    Welcome back
                 </div>
 
                 {showTabs ? items.map((item) => {
