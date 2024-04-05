@@ -15,8 +15,7 @@ import bg4 from "./image/bg/4.png"
 import bg5 from "./image/bg/5.png"
 import bg6 from "./image/bg/6.png"
 import {getVisibilityWatcher} from "web-vitals/dist/modules/lib/getVisibilityWatcher";
-import internal from "stream";
-
+import ReactDom from "react-dom"
 
 const TabItems: HeaderProps["items"] = [
     {
@@ -110,6 +109,10 @@ function App() {
         setTabKey(key!.key)
     }
     // bg-gradient-to-r from-gray-400 from-10% to-gray-950
+
+
+
+
     return (
         <div className="App">
             <div
@@ -139,6 +142,13 @@ function App() {
 
                 </div>
             </div>
+            {
+                ReactDom.createPortal((
+                    <div className="fixed bottom-1 right-1 z-50 text-white">
+                        <a href="https://icp.gov.moe/?keyword=20240264" target="_blank">萌ICP备20240264号</a>
+                    </div>
+                ), document.body)
+            }
         </div>
     );
 }
