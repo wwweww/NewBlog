@@ -42,6 +42,11 @@ const friends: friendsType[] = [
         qq: "1326389419",
         msg: "[图片]"
     },
+    {
+        name: "Heuluck",
+        qq: "2581035893",
+        msg: "我超福瑞"
+    },
 ]
 
 const barList: sideBarItem[] = [
