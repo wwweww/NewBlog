@@ -59,7 +59,8 @@ const Home: React.FC = () => {
                     <List title={"Plan"} items={[
                         "CSAPP",
                         "CLRS",
-                        "Rust"
+                        "Apologize2sdVOIT"
+                        // "Rust"
                     ]}/>
                 </div>
             </div>

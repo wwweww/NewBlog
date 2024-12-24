@@ -143,11 +143,11 @@ function App() {
                 </div>
             </div>
             {
-                ReactDom.createPortal((
-                    <div className="fixed bottom-1 right-1 z-50 text-white">
-                        <a href="https://icp.gov.moe/?keyword=20240264" target="_blank">萌ICP备20240264号</a>
-                    </div>
-                ), document.body)
+                // ReactDom.createPortal((
+                //     <div className="fixed bottom-1 right-1 z-50 text-white">
+                //         <a href="https://icp.gov.moe/?keyword=20240264" target="_blank">萌ICP备20240264号</a>
+                //     </div>
+                // ), document.body)
             }
         </div>
     );

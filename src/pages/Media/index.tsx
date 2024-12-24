@@ -11,7 +11,8 @@ import {faBilibili, faDiscord, faGithub, faInstagram, faSteam} from "@fortawesom
 type friendsType = {
     name: string,
     qq: string | number,
-    msg?: string
+    msg?: string,
+    url?: string
 }
 
 const friends: friendsType[] = [
@@ -20,27 +21,41 @@ const friends: friendsType[] = [
         qq: "2646787260",
     },
     {
-        name: "小牧",
-        qq: "2384870275",
-        msg: "可靠"
-    },
-    {
-        name: "端",
-        qq: "1807752373",
-        msg: "小奶拳拳锤爆你"
-    },{
-        name: "清酒既载",
-        qq: "2551402667",
-        msg: "可爱想x"
+        name: "Heuluck",
+        qq: "2581035893",
+        msg: "我超福瑞",
+        url: "https://heuluck.top/"
     },
     {
         name: "Little Black",
-        qq: "1015792092"
+        qq: "1015792092",
+        url: "https://www.mai1015.com/"
+    },
+    {
+        name: "fofu(",
+        qq: "570431231",
+        msg: "拍我拍我",
+        url: "http://fofu.dispnt.com"
     },
     {
         name: "古希腊掌管睡觉的神",
         qq: "1326389419",
         msg: "[图片]"
+    },
+    {
+        name: "小牧",
+        qq: "2384870275",
+        msg: "可靠"
+    },
+    {
+        name: "银凉♿️冰冰凉🧊",
+        qq: "3208482806",
+        msg: "雏绒你快来救命🆘！"
+    },
+    {
+        name: "我推的鸡掰猫",
+        qq: "2019913804",
+        msg: "+我vx看岩浆烫cr牛子"
     },
 ]
 
@@ -90,8 +105,8 @@ const Media: React.FC = () => {
             </div>
 
             <div className={"relative h-full"}>
-                <header className={"flex bg-[#1b1b1b]/80 pt-4 pb-3 px-4 absolute top-0"}>
-                    <input className={"bg-[#282828]/80 shadow rounded w-44 focus:outline-none text-sm px-1"} type="text"
+                <header className={"flex bg-[#1b1b1b] pt-4 pb-3 px-4 absolute top-0 z-10"}> 
+                    <input className={"bg-[#282828] shadow rounded w-44 focus:outline-none text-sm px-1"} type="text"
                            alt={"搜索"}/>
 
                     <button className={"ml-2 size-6 bg-[#282828]/80 shadow rounded p-1.5 hover:bg-[#393939]"}>
@@ -109,7 +124,7 @@ const Media: React.FC = () => {
                             return (
                                 <li key={idx}>
                                     <CP name={friend.name} qq={friend.qq} isSelector={idx === 0}
-                                        msg={friend.msg}/>
+                                        msg={friend.msg} url={friend?.url}/>
                                 </li>
                             )
                         })}

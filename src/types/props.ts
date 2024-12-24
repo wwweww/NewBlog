@@ -40,4 +40,5 @@ export interface CPProps {
     time?: string,
     className?: string,
     isSelector?: boolean,
+    url?: string,
 }
