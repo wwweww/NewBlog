@@ -35,7 +35,7 @@ const friends: friendsType[] = [
         name: "fofu(",
         qq: "570431231",
         msg: "拍我拍我",
-        url: "http://fofu.dispnt.com"
+        url: "https://fofu.dispnt.com"
     },
     {
         name: "古希腊掌管睡觉的神",

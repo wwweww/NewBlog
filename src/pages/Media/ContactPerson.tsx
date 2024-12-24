@@ -34,7 +34,7 @@ const CP: React.FC<CPProps> = (props) => {
                 </p>
             </div>
             <div className={"-translate-y-2 text-[.4em] font-thin mr-2"}>
-                {time || "昨天"}
+                {time || url ? "友链" : "昨天"}
             </div>
         </div>
     )
